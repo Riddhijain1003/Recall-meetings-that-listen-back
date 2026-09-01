@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up - Recall</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">
+        <svg class="recall-mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 26V8H18C21 8 23 10 23 13C23 16 21 18 18 18H6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 18L24 26" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <circle class="mark-dot" cx="27" cy="9" r="2" fill="currentColor"/>
+      </svg>        
+</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <div class="auth-wrap">
+        <div class="auth-card">
+            <svg class="cassette-icon" width="26" height="18" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 20px;"><rect x="0.6" y="0.6" width="18.8" height="12.8" rx="2.6" stroke="currentColor" stroke-width="1.1"/><circle class="reel reel-a" cx="6" cy="7" r="2.1" stroke="currentColor" stroke-width="1.1"/><circle class="reel reel-b" cx="14" cy="7" r="2.1" stroke="currentColor" stroke-width="1.1"/><path d="M6 5.6V7L7.1 6.3" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 5.6V7L15.1 6.3" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h2>Create an account</h2>
+            <p class="sub">Start recording meetings that listen.</p>
+
+            <label class="field-label" for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required>
+
+            <label class="field-label" for="password">Password</label>
+            <input type="password" id="password" placeholder="At least 6 characters" required>
+
+            <p id="error" class="form-msg error"></p>
+            <p id="success" class="form-msg success"></p>
+
+            <button type="button" id="signupBtn" class="auth-btn">Sign up</button>
+
+            <a href="login.html" class="switch-link">Already have an account? <b>Log in</b></a>
+        </div>
+    </div>
+
+    <script type="module" src="js/signup.js"></script>
+</body>
+</html>

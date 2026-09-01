@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In a meeting - Recall</title>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="meeting-body">
+
+    <div class="meeting-wrapper">
+        <!-- Left: Video Area -->
+        <div class="video-area">
+            <div class="room-header">
+                <button class="back-btn" onclick="window.location.href='dashboard.html'" aria-label="Back to dashboard">←</button>
+                <div class="room-header-text">
+                    <h2>Recall meeting</h2>
+                    <p><span id="room-id-display">...</span></p>
+                </div>
+                <div class="room-header-spacer"></div>
+            </div>
+
+            <div id="video-grid">
+                <!-- Videos will be injected here -->
+            </div>
+        </div>
+
+        <!-- Right: AI Notes -->
+        <div class="notes-sidebar">
+            <div class="notes-header">
+                <span>Meeting notes</span>
+                <span id="recording-indicator" style="display:none;">
+                    <svg class="recall-mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 26V8H18C21 8 23 10 23 13C23 16 21 18 18 18H6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 18L24 26" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    <circle class="mark-dot" cx="27" cy="9" r="2" fill="currentColor"/>
+</svg>
+                    <span class="rec-dot"></span> REC
+                </span>
+            </div>
+            <div id="transcript-box">
+                <p>Tap "Start AI Notes" to begin transcription.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Controls -->
+    <div class="bottom-controls">
+        <button id="mic-btn" class="btn-mic-cam">🎙️ Mic On</button>
+        <button id="cam-btn" class="btn-mic-cam">📷 Cam On</button>
+        <button id="transcribe-btn" class="btn-notes">📝 Start AI Notes</button>
+        <button id="leave-btn" class="btn-leave">Leave</button>
+    </div>
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="js/meeting.js"></script>
+</body>
+</html>

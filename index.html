@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recall - Meetings that listen back</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">
+            <svg class="recall-mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 26V8H18C21 8 23 10 23 13C23 16 21 18 18 18H6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 18L24 26" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            <circle class="mark-dot" cx="27" cy="9" r="2" fill="currentColor"/>
+            </svg>
+        </div>
+       
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main class="hero">
+        <div class="eyebrow">
+            <span class="rec-dot"></span>
+            Live transcription, on by default
+        </div>
+        <h1>Meetings that <em>listen</em> back.</h1>
+        <p>Recall turns your video calls into searchable transcripts and summaries — the moment you finish speaking, the moment it's remembered.</p>
+        <button class="start-btn" onclick="openRoomModal()">Start a meeting now</button>
+        <div class="hero-visual">
+    <div class="transcript-card">
+        <div class="transcript-card-head">
+            <span>Live transcript</span>
+            <span class="live-tag"><span class="rec-dot"></span> Recording</span>
+        </div>
+        <div class="t-line">
+            <span class="who">You</span>
+            <span class="txt">Let's move the deadline to Friday.</span>
+        </div>
+        <div class="t-line">
+            <span class="who">Aditi</span>
+            <span class="txt">Works for me — I'll send notes after.</span>
+        </div>
+        <div class="t-line">
+            <span class="who">You</span>
+            <span class="txt">Perfect, see you then.</span>
+        </div>
+    </div>
+</div>
+
+        <div class="hero-strip">
+            <span>◆ Peer-to-peer video</span>
+            <span>◆ Live speech-to-text</span>
+            <span>◆ Auto summaries</span>
+        </div>
+    </main>
+
+    <!-- ARCHITECTURE -->
+    <section class="arch-section">
+        <span class="eyebrow">Under the hood</span>
+        <h2>How a meeting actually connects</h2>
+        <p class="arch-sub">The signaling server only ever brokers a handshake — your camera and mic never touch it. Once two browsers agree on a path, the call itself is peer‑to‑peer.</p>
+
+        <div class="arch-diagram">
+            <div class="arch-top-row">
+                <div class="arch-box">
+                    <div class="arch-box-title">Your browser</div>
+                    <div class="arch-box-sub">getUserMedia · RTCPeerConnection</div>
+                </div>
+                <div class="arch-link">
+                    <span class="line"></span>
+                    <span class="label">WebRTC media<br>(audio + video)</span>
+                </div>
+                <div class="arch-box">
+                    <div class="arch-box-title">Participant's browser</div>
+                    <div class="arch-box-sub">getUserMedia · RTCPeerConnection</div>
+                </div>
+            </div>
+
+            <div class="arch-connector">
+                <span class="stem"></span>
+                <span class="note">both sides also exchange SDP offer/answer + ICE candidates through —</span>
+            </div>
+
+            <div class="arch-box server">
+                <div class="arch-box-title">Signaling server</div>
+                <div class="arch-box-sub">Node.js · Express · Socket.io — relays JSON only, never touches media</div>
+            </div>
+        </div>
+
+        <div class="arch-chips">
+            <span class="arch-chip"><b>Firebase Auth</b> — identity</span>
+            <span class="arch-chip"><b>Web Speech API</b> — in-browser transcription</span>
+            <span class="arch-chip"><b>localStorage</b> — meeting history</span>
+        </div>
+    </section>
+
+    <!-- ROOM MODAL (Pop-up for Create/Join) -->
+    <div id="room-modal">
+        <div class="modal-content">
+            <h3>Join or create a room</h3>
+            <p class="modal-sub">Rooms are peer-to-peer — no data stored on our servers.</p>
+            <input type="text" id="modal-room-id" placeholder="Room ID (e.g. sync-room)">
+            <input type="password" id="modal-passcode" placeholder="Passcode (optional)">
+            <div class="modal-btns">
+                <button class="btn-create" onclick="proceedToMeeting(true)">Create</button>
+                <button class="btn-join" onclick="proceedToMeeting(false)">Join</button>
+            </div>
+            <button onclick="closeRoomModal()" class="modal-cancel">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function openRoomModal() {
+            document.getElementById('room-modal').style.display = 'flex';
+        }
+        function closeRoomModal() {
+            document.getElementById('room-modal').style.display = 'none';
+        }
+        function proceedToMeeting(isCreate) {
+            let roomId = document.getElementById('modal-room-id').value.trim();
+            const passcode = document.getElementById('modal-passcode').value.trim();
+
+            if (!roomId && isCreate) {
+                roomId = Math.random().toString(36).substring(2, 8);
+            } else if (!roomId && !isCreate) {
+                alert("Please enter a Room ID to join.");
+                return;
+            }
+
+            window.location.href = `meeting.html?room=${roomId}&pass=${encodeURIComponent(passcode)}`;
+        }
+    </script>
+</body>
+</html>
