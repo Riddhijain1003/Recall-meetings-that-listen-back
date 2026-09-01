@@ -1,6 +1,6 @@
-# 🦫 Platypus – AI‑Powered Meeting Intelligence Platform
+# 🦫 Recall — Meetings that listen back
 
-Platypus is a **web‑based intelligent video conferencing platform** that combines **real‑time WebRTC communication** with **AI‑driven meeting intelligence** such as live transcription, summaries, and meeting history.
+Recall is a **web‑based intelligent video conferencing platform** that combines **real‑time WebRTC communication** with **AI‑driven meeting intelligence** such as live transcription, summaries, and meeting history.
 
 This project is designed as a **final‑year / capstone‑level system**, focusing on **practical implementation, clean architecture, and real‑world usability**.
 
